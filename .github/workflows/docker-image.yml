@@ -21,5 +21,5 @@ jobs:
           script: |
             docker stop prueba-react-docker || true
             docker rm prueba-react-docker || true
-            docker pull prueba-react-docker:latest || true
-            docker run -d -p 80:80 --name prueba-react-docker prueba-react-docker:latest
+            docker pull nicolasr17/prueba-react-docker:v1 || true
+            docker run -d -p 80:80 --name prueba-react-docker nicolasr17/prueba-react-docker:v1
