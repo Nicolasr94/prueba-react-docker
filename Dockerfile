@@ -24,5 +24,5 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expone el puerto 80 (opcional, pero buena práctica)
 EXPOSE 80
-
+CMD sleep infinity
 # Comando de inicio (no necesario, ya que Nginx en el host servirá los archivos)
