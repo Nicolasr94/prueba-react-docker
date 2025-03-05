@@ -16,13 +16,17 @@ COPY . .
 # Construye la aplicación React
 RUN npm run build
 
-# Usa una imagen base de Alpine para crear una imagen ligera
-FROM alpine:latest
+# Usa una imagen base de Alpine para crear una imagen ligera con Nginx
+FROM nginx:alpine
 
-# Copia los archivos construidos de la etapa anterior
+# Copia los archivos construidos de la etapa anterior al directorio de Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expone el puerto 80 (opcional, pero buena práctica)
+# Copia la configuración de Nginx (opcional)
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expone el puerto 80
 EXPOSE 80
-CMD ["npm", "start"]
-# Comando de inicio (no necesario, ya que Nginx en el host servirá los archivos)
+
+# Comando de inicio: Nginx
+CMD ["nginx", "-g", "daemon off;"]
